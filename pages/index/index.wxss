@@ -3,3 +3,10 @@
   position: fixed;
   z-index: 10;
 }
+
+canvas {
+  width: 375px;
+  height: 667px;
+  position: fixed;
+  top: 9999px;
+}

@@ -5,21 +5,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-    img:
-      "https://imgs-1253854453.cossh.myqcloud.com/34430437579ac6c9d1af3c1cd3767df2.png",
-    wechat:
-      "https://imgs-1253854453.cossh.myqcloud.com/34430437579ac6c9d1af3c1cd3767df2.png",
-    quan:
-      "https://imgs-1253854453.cossh.myqcloud.com/34430437579ac6c9d1af3c1cd3767df2.png",
-    code: "E7AI98",
-    inputValue: "",
-    maskHidden: false,
-    name: "",
-    touxiang: "",
-    code: "E7A93C",
-    imgPath:
-      "https://imgs-1253854453.cossh.myqcloud.com/34430437579ac6c9d1af3c1cd3767df2.png",
-    imagePath: ""
+    expressData: {
+      imgPath:
+        "http://imgs-1253854453.cossh.myqcloud.com/fdbd20b19b6ab2ea2f12b4910ac91d45.png",
+      qrCodeUrl: {
+        code: "www.jd.comfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf",
+        width: 110,
+        height: 110,
+        x: 224,
+        y: 370
+      },
+      list: [
+        {
+          type: "image",
+          imgUrl:
+            "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoFN9WMUV2y7un0hvsBbIc5W9Q94nuQlIhBso2Kib6vRXibgUia8pE60W1LTGmGOk4bC7BfsWBia3Xufw/132",
+          width: 50,
+          height: 50,
+          x: 40,
+          y: 53,
+          isCircle: true
+        },
+        {
+          type: "image",
+          imgUrl:
+            "http://imgs-1253854453.cossh.myqcloud.com/0aa8a0e8f25a0f608deefb36c34be39f.jpg",
+          width: 242,
+          height: 242,
+          x: 70,
+          y: 120
+        },
+        {
+          type: "text",
+          text: "迪士尼儿童背带",
+          color: "#f00",
+          font: "24px Airal",
+          x: 30,
+          y: 400
+        },
+        {
+          type: "text",
+          text: "2081",
+          color: "#000",
+          font: "16px Airal",
+          x: 90,
+          y: 427
+        }
+      ]
+    }
   },
 
   /**
@@ -32,23 +65,37 @@ Page({
 
   // 获取二维码链接，并生成图片
   getQrcodeImg: function() {
-    Drawing.qrc("canvas", this.data.imgPath, 150, 150);
+    console.log("getQrcodeImg start --->>>");
+    Drawing.qrc("qrCodeCanvas", this.data.imgPath, 150, 150);
   },
 
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function() {
     var that = this;
     var context = wx.createCanvasContext("mycanvas");
-    // context.setFillStyle("#ffe200");
+    context.setFillStyle("#ffe200");
     context.fillRect(0, 0, 375, 667);
     var path =
-      "https://imgs-1253854453.cossh.myqcloud.com/34430437579ac6c9d1af3c1cd3767df2.png";
+      "http://imgs-1253854453.cossh.myqcloud.com/fdbd20b19b6ab2ea2f12b4910ac91d45.png";
     context.drawImage(path, 0, 0, 375, 812);
+
+    //拼团文案
+    context.setFontSize(16);
+    context.setFillStyle("#666");
+    context.setTextAlign("left");
+    context.fillText("背包XXXXXXXXXX", 33, 485);
+
+    //拼团数量
+    context.setFontSize(16);
+    context.setFillStyle("#666");
+    context.setTextAlign("left");
+    context.fillText("127", 95, 515);
 
     //绘制右下角扫码提示语
     var path5 =
       "http://ww1.sinaimg.cn/large/41e13d0bgy1fsvsmiwuyxj20dw0jomyx.jpg";
-    context.drawImage(path5, 208, 528, 100, 100);
+    context.drawImage(path5, 208, 470, 100, 100);
+
     //绘制头像
     context.arc(186, 246, 50, 0, 2 * Math.PI); //画出圆
 
@@ -102,9 +149,6 @@ Page({
   //点击生成
   formSubmit: function(e) {
     var that = this;
-    this.setData({
-      maskHidden: false
-    });
     wx.showToast({
       title: "生成中...",
       icon: "loading",
@@ -113,9 +157,6 @@ Page({
     setTimeout(function() {
       wx.hideToast();
       that.createNewImg();
-      that.setData({
-        maskHidden: true
-      });
     }, 1000);
   },
   // 点击图片预览
