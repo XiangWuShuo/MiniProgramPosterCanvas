@@ -69,6 +69,18 @@ Page({
     Drawing.qrc("qrCodeCanvas", this.data.imgPath, 150, 150);
   },
 
+  // 绘制圆形头像
+  circleImg: function(ctx, img, x, y, r) {
+    ctx.save();
+    var d = 2 * r;
+    var cx = x + r;
+    var cy = y + r;
+    ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+    ctx.clip();
+    ctx.drawImage(img, x, y, d, d);
+    ctx.restore();
+  },
+
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function() {
     var that = this;
@@ -76,8 +88,13 @@ Page({
     context.setFillStyle("#ffe200");
     context.fillRect(0, 0, 375, 667);
     var path =
-      "http://imgs-1253854453.cossh.myqcloud.com/fdbd20b19b6ab2ea2f12b4910ac91d45.png";
+      "http://imgs-1253854453.image.myqcloud.com/fdbd20b19b6ab2ea2f12b4910ac91d45.png";
     context.drawImage(path, 0, 0, 375, 812);
+
+    // 拼团商品
+    var productPath =
+      "http://imgs-1253854453.image.myqcloud.com/0aa8a0e8f25a0f608deefb36c34be39f.jpg";
+    context.drawImage(productPath, 70, 170, 242, 242);
 
     //拼团文案
     context.setFontSize(16);
@@ -93,13 +110,11 @@ Page({
 
     //绘制右下角扫码提示语
     var path5 =
-      "http://ww1.sinaimg.cn/large/41e13d0bgy1fsvsmiwuyxj20dw0jomyx.jpg";
+      "http://imgs-1253854453.image.myqcloud.com/1ab20e9f41573eecd2acf58067225d58.png";
     context.drawImage(path5, 208, 470, 100, 100);
 
     //绘制头像
-    context.arc(186, 246, 50, 0, 2 * Math.PI); //画出圆
-
-    context.clip(); //裁剪上面的圆形
+    that.circleImg(context, productPath, 38, 60, 40);
     context.draw();
 
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
@@ -119,6 +134,7 @@ Page({
       });
     }, 200);
   },
+
   //点击保存到相册
   baocun: function() {
     var that = this;
