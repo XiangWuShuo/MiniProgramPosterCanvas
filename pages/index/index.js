@@ -7,7 +7,7 @@ Page({
   data: {
     expressData: {
       imgPath:
-        "http://imgs-1253854453.cossh.myqcloud.com/fdbd20b19b6ab2ea2f12b4910ac91d45.png",
+        "http://imgs-1253854453.image.myqcloud.com/fdbd20b19b6ab2ea2f12b4910ac91d45.png",
       qrCodeUrl: {
         code: "www.jd.comfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf",
         width: 110,
@@ -68,6 +68,21 @@ Page({
     console.log("getQrcodeImg start --->>>");
     Drawing.qrc("qrCodeCanvas", this.data.imgPath, 150, 150);
   },
+  // 绘制图片
+  myDrawImg: function(context, data) {
+    if (data.isCircle) {
+      this.circleImg(context, data.imgUrl, data.x, data.y, 25);
+    } else {
+      context.drawImage(data.imgUrl, data.x, data.y, data.width, data.height);
+    }
+  },
+  // 绘制文字
+  drawText: function(context, data) {
+    context.setFontSize(data.font);
+    context.setFillStyle(data.color);
+    context.setTextAlign("left");
+    context.fillText(data.text, data.x, data.y);
+  },
 
   // 绘制圆形头像
   circleImg: function(ctx, img, x, y, r) {
@@ -85,36 +100,19 @@ Page({
   createNewImg: function() {
     var that = this;
     var context = wx.createCanvasContext("mycanvas");
-    context.setFillStyle("#ffe200");
-    context.fillRect(0, 0, 375, 667);
-    var path =
-      "http://imgs-1253854453.image.myqcloud.com/fdbd20b19b6ab2ea2f12b4910ac91d45.png";
-    context.drawImage(path, 0, 0, 375, 812);
+    // 背景图
+    context.drawImage(this.data.expressData.imgPath, 0, 0, 375, 667);
 
-    // 拼团商品
-    var productPath =
-      "http://imgs-1253854453.image.myqcloud.com/0aa8a0e8f25a0f608deefb36c34be39f.jpg";
-    context.drawImage(productPath, 70, 170, 242, 242);
-
-    //拼团文案
-    context.setFontSize(16);
-    context.setFillStyle("#666");
-    context.setTextAlign("left");
-    context.fillText("背包XXXXXXXXXX", 33, 485);
-
-    //拼团数量
-    context.setFontSize(16);
-    context.setFillStyle("#666");
-    context.setTextAlign("left");
-    context.fillText("127", 95, 515);
-
-    //绘制右下角扫码提示语
-    var path5 =
-      "http://imgs-1253854453.image.myqcloud.com/1ab20e9f41573eecd2acf58067225d58.png";
-    context.drawImage(path5, 208, 470, 100, 100);
-
-    //绘制头像
-    that.circleImg(context, productPath, 38, 60, 40);
+    // 生成文案与图片
+    for (let i = 0; i < this.data.expressData.list.length; i++) {
+      console.log("loop start");
+      let value = this.data.expressData.list[i];
+      if (value.type == "text") {
+        this.drawText(context, value);
+      } else if (value.type == "image") {
+        this.myDrawImg(context, value);
+      }
+    }
     context.draw();
 
     //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
@@ -162,7 +160,7 @@ Page({
       }
     });
   },
-  //点击生成
+  //开始生成
   formSubmit: function(e) {
     var that = this;
     wx.showToast({

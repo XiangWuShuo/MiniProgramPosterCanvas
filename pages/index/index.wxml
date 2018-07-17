@@ -3,7 +3,7 @@
         <image src="{{imagePath}}" class='shengcheng' bindtap="previewImage" mode="widthFix"></image>
     </view>
 
-    <view class="canvas-box">
+    <view id="canvasBox">
         <canvas canvas-id="mycanvas" />
     </view>
     <view>
