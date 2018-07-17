@@ -54,14 +54,13 @@ Page({
   },
 
   onLoad: function(options) {
-    // this.getQrcodeImg();
+    this.getQrcodeImg();
     this.startDrawing();
   },
 
   // 获取二维码链接，并生成图片
   getQrcodeImg: function() {
-    console.log("getQrcodeImg start --->>>");
-    Drawing.qrc("qrCodeCanvas", this.data.imgPath, 150, 150);
+    Drawing.qrc("qrCodeCanvas", this.data.expressData.imgPath, 50, 50);
   },
   // 绘制图片
   myDrawImg: function(context, data) {
@@ -97,6 +96,18 @@ Page({
     var context = wx.createCanvasContext("mycanvas");
     // 背景图
     context.drawImage(this.data.expressData.imgPath, 0, 0, 375, 667);
+
+    // // 二维码图片设置
+    // let mycans = document.getElementsByTagName("canvas")[1]; //二维码所在的canvas
+    // let qrCodeimg = this.convertCanvasToImage(mycans);
+    // // 画二维码
+    // context.drawImage(
+    //   qrCodeimg,
+    //   that.expressData.qrCodeUrl.x,
+    //   that.expressData.qrCodeUrl.y,
+    //   that.expressData.qrCodeUrl.width,
+    //   that.expressData.qrCodeUrl.height
+    // );
 
     // 生成文案与图片
     for (let i = 0; i < this.data.expressData.list.length; i++) {
