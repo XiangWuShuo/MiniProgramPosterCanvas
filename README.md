@@ -1,6 +1,6 @@
 # Canvas 生成海报 - 小程序版
 
-小程序利用 canvas 生成海报。
+小程序利用 Canvas 生成海报。
 
 ### Installing
 
@@ -8,10 +8,15 @@
 git clone https://github.com/XiangWuShuo/MiNiAppPosterCanvas.git
 ```
 
+## 效果图
+
+![海报效果图](http://imgs-1253854453.image.myqcloud.com/94de9b7d42df89d5d0cce2149a1643ae.png)
+
 ## 使用方法
 
-1.  使用微信小程序模拟器打开文件
-2.  pages/index/index.html 即为主程序
+1.  下载文件后使用微信小程序模拟器打开文件
+2.  pages/index/index.html 为主程序
+3.  可以通过个性化配置 index.js 文件中的 expressData 数据 实现不同的海报场景的绘制
 
 ## Built With
 
