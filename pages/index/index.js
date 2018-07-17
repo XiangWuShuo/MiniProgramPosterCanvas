@@ -1,9 +1,6 @@
 const Drawing = require("../drawing");
 const app = getApp();
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
     expressData: {
       imgPath:
@@ -39,7 +36,7 @@ Page({
           type: "text",
           text: "迪士尼儿童背带",
           color: "#f00",
-          font: "24px Airal",
+          font: "24",
           x: 30,
           y: 400
         },
@@ -47,20 +44,18 @@ Page({
           type: "text",
           text: "2081",
           color: "#000",
-          font: "16px Airal",
+          font: "12",
           x: 90,
           y: 427
         }
       ]
-    }
+    },
+    bgImgUrl: ""
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function(options) {
-    this.formSubmit();
     // this.getQrcodeImg();
+    this.startDrawing();
   },
 
   // 获取二维码链接，并生成图片
@@ -97,7 +92,7 @@ Page({
   },
 
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
-  createNewImg: function() {
+  createCanvasImg: function() {
     var that = this;
     var context = wx.createCanvasContext("mycanvas");
     // 背景图
@@ -105,7 +100,6 @@ Page({
 
     // 生成文案与图片
     for (let i = 0; i < this.data.expressData.list.length; i++) {
-      console.log("loop start");
       let value = this.data.expressData.list[i];
       if (value.type == "text") {
         this.drawText(context, value);
@@ -134,7 +128,7 @@ Page({
   },
 
   //点击保存到相册
-  baocun: function() {
+  saveToLocal: function() {
     var that = this;
     wx.saveImageToPhotosAlbum({
       filePath: that.data.imagePath,
@@ -161,7 +155,7 @@ Page({
     });
   },
   //开始生成
-  formSubmit: function(e) {
+  startDrawing: function(e) {
     var that = this;
     wx.showToast({
       title: "生成中...",
@@ -170,7 +164,7 @@ Page({
     });
     setTimeout(function() {
       wx.hideToast();
-      that.createNewImg();
+      that.createCanvasImg();
     }, 1000);
   },
   // 点击图片预览
@@ -181,7 +175,7 @@ Page({
     });
   },
   onPullDownRefreash: function() {
-    this.formSubmit();
+    this.startDrawing();
   },
   /**
    * 用户点击右上角分享
