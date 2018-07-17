@@ -1,5 +1,3 @@
-#wxCanvas
-
 # Canvas 生成海报 - 小程序版
 
 小程序利用 canvas 生成海报。
@@ -7,7 +5,7 @@
 ### Installing
 
 ```
-git clone 项目名
+git clone https://github.com/XiangWuShuo/MiNiAppPosterCanvas.git
 ```
 
 ## 使用方法
@@ -97,8 +95,6 @@ expressData: {
       }
     }
 ```
-
-### 注意事项
 
 ## Authors 关于作者
 
