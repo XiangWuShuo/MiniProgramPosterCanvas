@@ -1,12 +1,12 @@
 .shengcheng {
-  width: 100%;
+  width: 100vw;
   position: fixed;
   z-index: 10;
 }
 
 canvas {
-  width: 375px;
-  height: 667px;
+  width: 750rpx;
+  height: 1334rpx;
   position: fixed;
   top: 9999px;
 }

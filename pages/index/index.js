@@ -7,6 +7,8 @@ Page({
         "http://imgs-1253854453.image.myqcloud.com/fdbd20b19b6ab2ea2f12b4910ac91d45.png",
       qrCodeUrl: {
         code: "www.jd.comfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf",
+        url:
+          "http://imgs-1253854453.image.myqcloud.com/35ffdec6d3eefe6247e34c72fb257a1b.png",
         width: 110,
         height: 110,
         x: 224,
@@ -91,23 +93,14 @@ Page({
   },
 
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
-  createCanvasImg: function() {
+  drawCanvasImg: function() {
     var that = this;
     var context = wx.createCanvasContext("mycanvas");
     // 背景图
     context.drawImage(this.data.expressData.imgPath, 0, 0, 375, 667);
 
-    // // 二维码图片设置
-    // let mycans = document.getElementsByTagName("canvas")[1]; //二维码所在的canvas
-    // let qrCodeimg = this.convertCanvasToImage(mycans);
-    // // 画二维码
-    // context.drawImage(
-    //   qrCodeimg,
-    //   that.expressData.qrCodeUrl.x,
-    //   that.expressData.qrCodeUrl.y,
-    //   that.expressData.qrCodeUrl.width,
-    //   that.expressData.qrCodeUrl.height
-    // );
+    // 二维码
+    context.drawImage(this.data.expressData.qrCodeUrl.url, 220, 370, 100, 100);
 
     // 生成文案与图片
     for (let i = 0; i < this.data.expressData.list.length; i++) {
@@ -175,7 +168,7 @@ Page({
     });
     setTimeout(function() {
       wx.hideToast();
-      that.createCanvasImg();
+      that.drawCanvasImg();
     }, 1000);
   },
   // 点击图片预览
@@ -187,19 +180,5 @@ Page({
   },
   onPullDownRefreash: function() {
     this.startDrawing();
-  },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function(res) {
-    return {
-      title: "这个是我分享出来的东西",
-      success: function(res) {
-        console.log(res, "转发成功");
-      },
-      fail: function(res) {
-        console.log(res, "转发失败");
-      }
-    };
   }
 });
