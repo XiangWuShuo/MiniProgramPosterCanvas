@@ -1,4 +1,4 @@
-const Drawing = require("../drawing");
+const Drawing = require("../../utils/drawing");
 const app = getApp();
 Page({
   data: {
