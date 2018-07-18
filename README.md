@@ -10,7 +10,7 @@ git clone https://github.com/XiangWuShuo/MiNiAppPosterCanvas.git
 
 ## 效果图
 
-![海报效果图](http://imgs-1253854453.image.myqcloud.com/94de9b7d42df89d5d0cce2149a1643ae.png)
+![海报效果图](http://imgs-1253854453.image.myqcloud.com/1d8a8178d03dae3a603974bd61e621fc.png)
 
 ## 使用方法
 
