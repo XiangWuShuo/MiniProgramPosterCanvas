@@ -4,34 +4,34 @@
 [![LICENSE](https://img.shields.io/badge/license-MIT-000000.svg)](https://raw.githubusercontent.com/XiangWuShuo/MiniProgramPosterCanvas/master/LICENSE)
 [![3](https://img.shields.io/badge/made%20with-%3C3-orange.svg)](https://raw.githubusercontent.com/EyreFree/EFQRCode/assets/icon/MadeWith%3C3.png)
 
-MiniProgramPosterCanvas is a tool to generate poster in MiniProgram with Canvas.
+MiniProgramPosterCanvas 是一个在小程序中利用 Canvas 生成海报的工具。
 
-> [中文介绍](/README_CN.md)
+> [English Introduction](/README.md)
 
-## Overview
+## 概述
 
-![](http://imgs-1253854453.image.myqcloud.com/1d8a8178d03dae3a603974bd61e621fc.png)   
+![](http://imgs-1253854453.image.myqcloud.com/1d8a8178d03dae3a603974bd61e621fc.png)  
 
-## Demo
+## 示例
 
-1. To run the example project manually, clone the repo, demos are in the 'Examples' folder;   
-2. After you download the file, use the WeChatMiniProgramDevTool to open the file;   
-3. `pages/index/index.html` is main function;   
-4. You can change `expressData` in `index.js` to custom the poster.   
+1. 利用 `git clone` 命令下载本仓库；
+2. 下载文件后使用微信小程序模拟器打开文件；
+3. `pages/index/index.html` 为主程序；
+4. 可以通过个性化配置 `index.js` 文件中的 `expressData` 数据实现不同的海报场景的绘制。
 
-## Requirements
+## 环境
 
-- [MiniProgram](https://developers.weixin.qq.com/miniprogram/dev/)
+- [小程序](https://developers.weixin.qq.com/miniprogram/dev/)
 - [Canvas](https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API)
 
-## Quick Start
+## 快速使用
 
-### 1. Realization principle
+### 1. 实现原理
 
-1.  Using JSON to make page configurable;
-2.  Generate image with Canvas.
+1.  利用 JSON 配置页面数据；
+2.  利用小程序中的 Canvas 进行绘制。
 
-### 2. Request data description
+### 2. 请求数据说明
 
 ```yml
 expressData: {
@@ -104,15 +104,15 @@ expressData: {
     }
 ```
 
-## Contact
+## 作者
 
-mingying，mingying@xiangwushuo.com;   
-danchaofan，danchaofan@xiangwushuo.com.   
+mingying，mingying@xiangwushuo.com；   
+danchaofan，danchaofan@xiangwushuo.com。
 
-## License
+## 协议
 
 <a href="https://github.com/XiangWuShuo/MiniProgramPosterCanvas/blob/master/LICENSE">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/License_icon-mit-88x31-2.svg/128px-License_icon-mit-88x31-2.svg.png">
 </a>
 
-MiniProgramPosterCanvas is available under the MIT license. See the LICENSE file for more info.
+MiniProgramPosterCanvas 基于 MIT 协议进行分发和使用，更多信息参见协议文件。
