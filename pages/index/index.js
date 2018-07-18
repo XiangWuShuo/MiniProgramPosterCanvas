@@ -60,6 +60,7 @@ Page({
     this.startDrawing();
   },
   getDownloadImg: function(imgUrl) {
+    var that = this;
     wx.downloadFile({
       url: imgUrl, //仅为示例，并非真实的资源
       success: function(res) {
@@ -69,6 +70,10 @@ Page({
           //   bgImgUrl: res
           // });
           console.log("res is", res.tempFilePath);
+          var bgTempFilePath = res.tempFilePath;
+          that.setData({
+            bgImgUrl: bgTempFilePath
+          });
         }
       }
     });
@@ -108,7 +113,8 @@ Page({
     var that = this;
     var context = wx.createCanvasContext("mycanvas");
     // 背景图
-    context.drawImage(this.data.expressData.imgPath, 0, 0, 375, 667);
+    console.log("this.data.bgImgUrl is", this.data.bgImgUrl);
+    context.drawImage(this.data.bgImgUrl, 0, 0, 375, 667);
     // 二维码
     context.drawImage(this.data.expressData.qrCodeUrl.url, 220, 370, 100, 100);
     // 生成文案与图片
@@ -117,6 +123,7 @@ Page({
       if (value.type == "text") {
         this.drawText(context, value);
       } else if (value.type == "image") {
+        this.getDownloadImg(value.imgUrl);
         this.myDrawImg(context, value);
       }
     }
