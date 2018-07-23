@@ -54,22 +54,19 @@ Page({
     },
     bgImgUrl: ""
   },
+
   onLoad: function(options) {
-    this.getDownloadImg(this.data.expressData.imgPath);
+    // this.getDownloadImg(this.data.expressData.imgPath);
     this.getQrcodeImg();
     this.startDrawing();
   },
   getDownloadImg: function(imgUrl) {
     var that = this;
     wx.downloadFile({
-      url: imgUrl, //仅为示例，并非真实的资源
+      url: imgUrl,
       success: function(res) {
         // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
         if (res.statusCode === 200) {
-          // this.setData({
-          //   bgImgUrl: res
-          // });
-          console.log("res is", res.tempFilePath);
           var bgTempFilePath = res.tempFilePath;
           that.setData({
             bgImgUrl: bgTempFilePath
@@ -108,13 +105,32 @@ Page({
     ctx.drawImage(img, x, y, d, d);
     ctx.restore();
   },
+
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   drawCanvasImg: function() {
     var that = this;
     var context = wx.createCanvasContext("mycanvas");
     // 背景图
-    console.log("this.data.bgImgUrl is", this.data.bgImgUrl);
-    context.drawImage(this.data.bgImgUrl, 0, 0, 375, 667);
+    // wx.getImageInfo({
+    //   src: that.data.expressData.imgPath,
+    //   success: function(res) {
+    //     // that.setData({
+    //     //   bgImgUrl: res.path
+    //     // });
+    //     console.log("res.path", res.path);
+    //     context.drawImage(res.path, 0, 0, 375, 667);
+    //     context.draw();
+    //   },
+    //   fail: function() {
+    //     // fail
+    //   },
+    //   complete: function() {
+    //     // complete
+    //   }
+    // });
+
+    context.drawImage(that.data.expressData.imgPath, 0, 0, 375, 667);
+
     // 二维码
     context.drawImage(this.data.expressData.qrCodeUrl.url, 220, 370, 100, 100);
     // 生成文案与图片
@@ -123,7 +139,7 @@ Page({
       if (value.type == "text") {
         this.drawText(context, value);
       } else if (value.type == "image") {
-        this.getDownloadImg(value.imgUrl);
+        //this.getDownloadImg(value.imgUrl);
         this.myDrawImg(context, value);
       }
     }
