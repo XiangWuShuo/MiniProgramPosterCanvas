@@ -1,12 +1,6 @@
-.shengcheng {
-  width: 100vw;
-  position: fixed;
-  z-index: 10;
-}
-
 canvas {
   width: 750rpx;
   height: 1334rpx;
   position: fixed;
-  top: 9999px;
+  /* top: 9999px; */
 }

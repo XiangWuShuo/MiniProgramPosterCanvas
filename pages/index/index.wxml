@@ -1,9 +1,5 @@
 <view>
-    <view class='imagePathBox' hidden="{{maskHidden == false}}">
-        <image src="{{imagePath}}" class='shengcheng' bindtap="previewImage" mode="widthFix"></image>
-    </view>
-
-    <view id="canvasBox">
+    <view id="canvasBox" bindtap="previewImage">
         <canvas canvas-id="mycanvas" />
     </view>
     <view>

@@ -18,7 +18,7 @@ Page({
         {
           type: "image",
           imgUrl:
-            "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoFN9WMUV2y7un0hvsBbIc5W9Q94nuQlIhBso2Kib6vRXibgUia8pE60W1LTGmGOk4bC7BfsWBia3Xufw/132",
+            "http://imgs-1253854453.image.myqcloud.com/0eff60f48db1f79f0ac43dd7fb12c56a.jpg",
           width: 50,
           height: 50,
           x: 40,
@@ -46,34 +46,21 @@ Page({
           type: "text",
           text: "2081",
           color: "#000",
-          font: "12",
-          x: 90,
+          font: "15",
+          x: 100,
           y: 427
         }
       ]
     },
-    bgImgUrl: ""
+    bgImgUrl: "",
+    qrCodeUrl: "",
+    touXiangImg: "",
+    product: ""
   },
 
   onLoad: function(options) {
-    // this.getDownloadImg(this.data.expressData.imgPath);
     this.getQrcodeImg();
     this.startDrawing();
-  },
-  getDownloadImg: function(imgUrl) {
-    var that = this;
-    wx.downloadFile({
-      url: imgUrl,
-      success: function(res) {
-        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-        if (res.statusCode === 200) {
-          var bgTempFilePath = res.tempFilePath;
-          that.setData({
-            bgImgUrl: bgTempFilePath
-          });
-        }
-      }
-    });
   },
   // 获取二维码链接，并生成图片
   getQrcodeImg: function() {
@@ -106,88 +93,98 @@ Page({
     ctx.restore();
   },
 
-  //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
+  // 将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   drawCanvasImg: function() {
     var that = this;
     var context = wx.createCanvasContext("mycanvas");
-    // 背景图
-    // wx.getImageInfo({
-    //   src: that.data.expressData.imgPath,
-    //   success: function(res) {
-    //     // that.setData({
-    //     //   bgImgUrl: res.path
-    //     // });
-    //     console.log("res.path", res.path);
-    //     context.drawImage(res.path, 0, 0, 375, 667);
-    //     context.draw();
-    //   },
-    //   fail: function() {
-    //     // fail
-    //   },
-    //   complete: function() {
-    //     // complete
-    //   }
-    // });
-
-    context.drawImage(that.data.expressData.imgPath, 0, 0, 375, 667);
-
-    // 二维码
-    context.drawImage(this.data.expressData.qrCodeUrl.url, 220, 370, 100, 100);
-    // 生成文案与图片
-    for (let i = 0; i < this.data.expressData.list.length; i++) {
-      let value = this.data.expressData.list[i];
-      if (value.type == "text") {
-        this.drawText(context, value);
-      } else if (value.type == "image") {
-        //this.getDownloadImg(value.imgUrl);
-        this.myDrawImg(context, value);
-      }
-    }
-    context.draw();
-    //将生成好的图片保存到本地，需要延迟一会，绘制期间耗时
-    setTimeout(function() {
-      wx.canvasToTempFilePath({
-        canvasId: "mycanvas",
-        success: function(res) {
-          var tempFilePath = res.tempFilePath;
-          that.setData({
-            imagePath: tempFilePath,
-            canvasHidden: true
-          });
-        },
-        fail: function(res) {
-          console.log(res);
-        }
-      });
-    }, 200);
-  },
-  //点击保存到相册
-  saveToLocal: function() {
-    var that = this;
-    wx.saveImageToPhotosAlbum({
-      filePath: that.data.imagePath,
-      success(res) {
-        wx.showModal({
-          content: "图片已保存到相册，赶紧晒一下吧~",
-          showCancel: false,
-          confirmText: "好的",
-          confirmColor: "#333",
+    let deviceWidth = wx.getSystemInfoSync().windowWidth;
+    let deviceHeight = wx.getSystemInfoSync().windowHeight;
+    // 背景图;
+    wx.getImageInfo({
+      src: that.data.expressData.imgPath,
+      success: function(res) {
+        that.setData({
+          bgImgUrl: res.path
+        });
+        // context.drawImage(that.data.bgImgUrl, 0, 0, deviceWidth, deviceHeight);
+        // 二维码
+        wx.getImageInfo({
+          src: that.data.expressData.qrCodeUrl.url,
           success: function(res) {
-            if (res.confirm) {
-              console.log("用户点击确定");
-              /* 该隐藏的隐藏 */
-              that.setData({
-                maskHidden: false
-              });
-            }
-          },
-          fail: function(res) {
-            console.log(11111);
+            // success
+            that.setData({
+              qrCodeUrl: res.path
+            });
+
+            // 头像
+            wx.getImageInfo({
+              src: that.data.expressData.list[0].imgUrl,
+              success: function(res) {
+                // success
+                that.setData({
+                  touXiangImg: res.path
+                });
+
+                // 商品图片
+                wx.getImageInfo({
+                  src: that.data.expressData.list[1].imgUrl,
+                  success: function(res) {
+                    that.setData({
+                      product: res.path
+                    });
+
+                    // 背景
+                    context.drawImage(
+                      that.data.bgImgUrl,
+                      0,
+                      0,
+                      deviceWidth,
+                      deviceHeight
+                    );
+                    // 二维码
+                    context.drawImage(that.data.qrCodeUrl, 270, 390, 100, 100);
+                    // 头像
+                    that.circleImg(context, that.data.touXiangImg, 40, 53, 25);
+                    // 商品
+                    context.drawImage(that.data.product, 110, 120, 161, 242);
+                    for (
+                      let i = 0;
+                      i < that.data.expressData.list.length;
+                      i++
+                    ) {
+                      let value = that.data.expressData.list[i];
+                      if (value.type == "text") {
+                        that.drawText(context, value);
+                      }
+                    }
+                    context.draw();
+                    // 保存canvas
+                    setTimeout(function() {
+                      wx.canvasToTempFilePath({
+                        canvasId: "mycanvas",
+                        success: function(res) {
+                          var tempFilePath = res.tempFilePath;
+                          that.setData({
+                            imagePath: tempFilePath,
+                            canvasHidden: true
+                          });
+                        },
+                        fail: function(res) {
+                          console.log(res);
+                        }
+                      });
+                    }, 200);
+                    //
+                  }
+                });
+              }
+            });
           }
         });
       }
     });
   },
+
   //开始生成
   startDrawing: function(e) {
     var that = this;
@@ -196,11 +193,9 @@ Page({
       icon: "loading",
       duration: 1000
     });
-    setTimeout(function() {
-      wx.hideToast();
-      that.drawCanvasImg();
-    }, 1000);
+    that.drawCanvasImg();
   },
+
   // 点击图片预览
   previewImage: function(e) {
     wx.previewImage({
