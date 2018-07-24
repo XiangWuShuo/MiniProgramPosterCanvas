@@ -10,7 +10,7 @@ MiniProgramPosterCanvas 是一个在小程序中利用 Canvas 生成海报的工
 
 ## 概述
 
-![](http://imgs-1253854453.image.myqcloud.com/25c5cad4a72b47f5fe7e284683347bbe.png)
+![](http://imgs-1253854453.image.myqcloud.com/1d8a8178d03dae3a603974bd61e621fc.png)
 
 ## 示例
 

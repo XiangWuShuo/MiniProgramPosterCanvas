@@ -10,7 +10,7 @@ MiniProgramPosterCanvas is a tool to generate poster in MiniProgram with Canvas.
 
 ## Overview
 
-![](http://imgs-1253854453.image.myqcloud.com/25c5cad4a72b47f5fe7e284683347bbe.png)
+![](http://imgs-1253854453.image.myqcloud.com/1d8a8178d03dae3a603974bd61e621fc.png)
 
 ## Demo
 
