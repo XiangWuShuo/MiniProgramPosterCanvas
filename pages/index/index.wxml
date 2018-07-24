@@ -1,10 +1,6 @@
 <view>
-    <view id="canvasBox" bindtap="previewImage">
-        <canvas canvas-id="mycanvas" />
-    </view>
-    <view>
-        <view style="position: relative">
-            <canvas style="width: 100px;height: 100px;position:fixed;top:0; display: none;" canvas-id="qrCodeCanvas" />
-        </view>
+    <canvas canvas-id="myCanvas" bindtap="longClick" />
+    <view class="qrCode">
+        <canvas canvas-id="qrCodeCanvas" />
     </view>
 </view>

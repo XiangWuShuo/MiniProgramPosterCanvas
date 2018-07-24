@@ -1,6 +1,17 @@
 canvas {
-  width: 750rpx;
+  /* position: fixed;  */
+  width: 100vw;
   height: 1334rpx;
-  position: fixed;
-  /* top: 9999px; */
+}
+
+.qrCode {
+  position: absolute;
+  left: -1000rpx;
+  height: 100rpx;
+  width: 100rpx;
+}
+
+.qrCode > canvas {
+  width: 100rpx;
+  height: 100rpx;
 }
