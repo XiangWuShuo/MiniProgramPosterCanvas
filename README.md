@@ -10,14 +10,14 @@ MiniProgramPosterCanvas is a tool to generate poster in MiniProgram with Canvas.
 
 ## Overview
 
-![](http://imgs-1253854453.image.myqcloud.com/1d8a8178d03dae3a603974bd61e621fc.png)   
+![](http://imgs-1253854453.image.myqcloud.com/25c5cad4a72b47f5fe7e284683347bbe.png)
 
 ## Demo
 
-1. To run the example project manually, clone the repo, demos are in the 'Examples' folder;   
-2. After you download the file, use the WeChatMiniProgramDevTool to open the file;   
-3. `pages/index/index.html` is main function;   
-4. You can change `expressData` in `index.js` to custom the poster.   
+1.  To run the example project manually, clone the repo, demos are in the 'Examples' folder;
+2.  After you download the file, use the WeChatMiniProgramDevTool to open the file;
+3.  `pages/index/index.html` is main function;
+4.  You can change `expressData` in `index.js` to custom the poster.
 
 ## Requirements
 
@@ -106,8 +106,8 @@ expressData: {
 
 ## Contact
 
-mingying，mingying@xiangwushuo.com;   
-danchaofan，danchaofan@xiangwushuo.com.   
+mingying，mingying@xiangwushuo.com;  
+danchaofan，danchaofan@xiangwushuo.com.
 
 ## License
 

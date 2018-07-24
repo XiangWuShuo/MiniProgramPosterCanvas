@@ -10,14 +10,14 @@ MiniProgramPosterCanvas 是一个在小程序中利用 Canvas 生成海报的工
 
 ## 概述
 
-![](http://imgs-1253854453.image.myqcloud.com/1d8a8178d03dae3a603974bd61e621fc.png)  
+![](http://imgs-1253854453.image.myqcloud.com/25c5cad4a72b47f5fe7e284683347bbe.png)
 
 ## 示例
 
-1. 利用 `git clone` 命令下载本仓库；
-2. 下载文件后使用微信小程序模拟器打开文件；
-3. `pages/index/index.html` 为主程序；
-4. 可以通过个性化配置 `index.js` 文件中的 `expressData` 数据实现不同的海报场景的绘制。
+1.  利用 `git clone` 命令下载本仓库；
+2.  下载文件后使用微信小程序模拟器打开文件；
+3.  `pages/index/index.html` 为主程序；
+4.  可以通过个性化配置 `index.js` 文件中的 `expressData` 数据实现不同的海报场景的绘制。
 
 ## 环境
 
@@ -106,7 +106,7 @@ expressData: {
 
 ## 作者
 
-mingying，mingying@xiangwushuo.com；   
+mingying，mingying@xiangwushuo.com；  
 danchaofan，danchaofan@xiangwushuo.com。
 
 ## 协议
